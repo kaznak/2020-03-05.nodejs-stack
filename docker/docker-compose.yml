@@ -6,4 +6,13 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.app
     ports:
-     - 3000:3000
+      - 3000:3000
+    depends_on:
+      - db    
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ../data/db:/var/lib/postgresql/data
